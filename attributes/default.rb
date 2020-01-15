@@ -15,17 +15,19 @@ cachethq['packages'] = [
   'openssl',
   'nginx',
   'npm',
-  'unzip',
+  'unzip'
 ]
 cachethq['repo'] = 'https://github.com/cachethq/Cachet.git'
 cachethq['db']['driver'] = 'sqlite'
 cachethq['db']['name'] = 'cachethq'
+cachethq['app_key'] = ''
 
 nginx = cachethq['nginx']
 nginx['confdir'] = '/etc/nginx/sites-enabled/'
 nginx['docroot'] = '/usr/share/nginx/html/'
 nginx['server_name'] = ''
 nginx['logs_dir'] = '/var/log/nginx/'
+nginx['admin_whitelisted_ip'] = []
 cachethq['install_dir'] = '/opt/cachethq/'
 cachethq['logs']['access'] = nginx['logs_dir'] + 'cachethq.access.log'
 cachethq['logs']['error'] = nginx['logs_dir'] + 'cachethq.error.log'

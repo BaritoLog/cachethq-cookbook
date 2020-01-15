@@ -1,11 +1,21 @@
 server {
   listen      80;
-  server_name <%= @server_name %>;
+  server_name localhost <%= @server_name %>;
  
   root <%= @install_dir %>public;
   index index.html index.htm index.php;
  
   charset utf-8;
+
+  <% if @admin_whitelisted_ip.length > 0 %>
+  location ~ /(auth|dashboard) {
+    <% @admin_whitelisted_ip.each do |ip| %>
+    allow <%= ip %>;
+    <% end %>
+    deny all;
+    try_files $uri $uri/ /index.php?$query_string;
+  }
+  <% end %>
  
   location / {
       try_files $uri $uri/ /index.php?$query_string;

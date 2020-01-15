@@ -157,7 +157,8 @@ template nginx['confdir'] + 'CachetHQ.conf' do
     install_dir: cachethq['install_dir'],
     access_log: cachethq['logs']['access'],
     error_log: cachethq['logs']['error'],
-    fpm_socket: fpm['socket']
+    fpm_socket: fpm['socket'],
+    admin_whitelisted_ip: node['cachethq']['nginx']['admin_whitelisted_ip']
   )
   notifies :reload, 'service[nginx]'
 end
