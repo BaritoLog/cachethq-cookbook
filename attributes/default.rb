@@ -28,6 +28,7 @@ nginx['docroot'] = '/usr/share/nginx/html/'
 nginx['server_name'] = ''
 nginx['logs_dir'] = '/var/log/nginx/'
 nginx['admin_whitelisted_ip'] = []
+nginx['fastcgi_params'] = []
 cachethq['install_dir'] = '/opt/cachethq/'
 cachethq['logs']['access'] = nginx['logs_dir'] + 'cachethq.access.log'
 cachethq['logs']['error'] = nginx['logs_dir'] + 'cachethq.error.log'
