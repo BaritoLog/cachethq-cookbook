@@ -48,7 +48,7 @@ apache2['cas_root_url'] = ""
 apache2['additional_config'] = []
 apache2['logs']['access'] = apache2['logs_dir'] + 'cachethq.access.log'
 apache2['logs']['error'] = apache2['logs_dir'] + 'cachethq.error.log'
-apache2['default_conf'] = '/etc/apache2/sites-available/000-default.conf'
+apache2['default_conf'] = apache2['confdir'] + '000-default.conf'
 
 fpm = cachethq['php-fpm']
 fpm['config'] = '/etc/php/7.2/fpm/php-fpm.conf'
