@@ -9,7 +9,8 @@ cachethq = node.default['cachethq']
 nginx = cachethq['nginx']
 fpm = cachethq['php-fpm']
 
-# somehow apache2 is also installed
+# make sure remove apache2
+# to avoid duplicate web server, port blocked because already used, etc
 package %w(apache2)  do
   action :remove
 end
