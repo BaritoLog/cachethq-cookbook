@@ -1,0 +1,32 @@
+<%= @additional_config.join("\n") %>
+<VirtualHost *:80>
+    ServerName <%= @server_name %>
+    ServerAlias www.<%= @server_name %>
+    DocumentRoot /opt/cachethq/public
+    <% if @auth_type == 'CAS' %>
+    CASDebug On
+    CASCookiePath /tmp/
+    CASLoginURL <%= @cas_login_url %>
+    CASValidateURL <%= @cas_validate_url %>
+    CASRootProxiedAs <%= @cas_root_url %>
+    <% end %>
+    <Directory /opt/cachethq/public>
+    	<% if @auth_type == 'CAS' %>
+        AuthType CAS
+        require valid-user
+        <% end %>
+        Options -Indexes +FollowSymLinks +MultiViews
+        AllowOverride All
+        Require all granted
+    </Directory>
+    <FilesMatch \.php$>
+    	<% if @auth_type == 'CAS' %>
+        AuthType CAS
+        require valid-user
+        <% end %>
+        # 2.4.10+ can proxy to unix socket
+        SetHandler "proxy:unix:/run/php/php7.2-fpm.sock|fcgi://localhost"
+    </FilesMatch>
+    ErrorLog <%= @error_log %>
+    CustomLog <%= @access_log %> combined
+</VirtualHost>

@@ -35,6 +35,20 @@ cachethq['logs']['access'] = nginx['logs_dir'] + 'cachethq.access.log'
 cachethq['logs']['error'] = nginx['logs_dir'] + 'cachethq.error.log'
 cachethq['db']['file'] = "#{cachethq['install_dir']}/database/#{cachethq['db']['name']}.sqlite"
 
+apache2 = cachethq['apache2']
+apache2['confdir'] = '/etc/apache2/sites-available/'
+apache2['server_name'] = ''
+apache2['logs_dir'] = '/var/log/apache2/'
+apache2['admin_whitelisted_ip'] = []
+apache2['fastcgi_params'] = []
+apache2['auth_type'] = ""
+apache2['cas_login_url'] = ""
+apache2['cas_validate_url'] = ""
+apache2['cas_root_url'] = ""
+apache2['additional_config'] = []
+apache2['logs']['access'] = apache2['logs_dir'] + 'cachethq.access.log'
+apache2['logs']['error'] = apache2['logs_dir'] + 'cachethq.error.log'
+
 fpm = cachethq['php-fpm']
 fpm['config'] = '/etc/php/7.2/fpm/php-fpm.conf'
 fpm['confdir'] = '/etc/php/7.2/fpm/'

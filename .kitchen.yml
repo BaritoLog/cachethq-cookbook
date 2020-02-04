@@ -12,7 +12,14 @@ platforms:
   - name: ubuntu-18.04
 
 suites:
-  - name: default
+  - name: apache2
     run_list:
-      - recipe[cachethq::default]
+      - recipe[cachethq::install]
+      - recipe[cachethq::apache2]
+    attributes:
+
+  - name: nginx
+    run_list:
+      - recipe[cachethq::install]
+      - recipe[cachethq::nginx]
     attributes:
