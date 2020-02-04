@@ -8,23 +8,22 @@
 cachethq = node.default['cachethq']
 apache2 = cachethq['apache2']
 
-# somehow apache2 is also installed
+log '**** Installing apache2 and auth cas mod ****'
 package %w(libapache2-mod-auth-cas apache2)  do
   action :install
 end
 
-execute "a2enmod auth_cas" do
-  command "sudo a2enmod auth_cas"
+bash "a2enmod auth_cas" do
+  code "a2enmod auth_cas"
 end
 
-default_conf = "#{apache2['confdir']}" + "000-default.conf"
-bash "remove_default_nginx_nginx" do
-  code "rm -f #{default_conf}" 
+bash "remove_default_apache_conf" do
+  code "rm -f #{apache2['default_conf']}" 
   only_if { ::File.exist?(default_conf) }
 end
 
 log '**** Setting up apache2 config for CachetHQ ****'
-template apache2['confdir'] + '000-default.conf' do
+template apache2['default_conf'] do
   source '000-default.conf.erb'
   owner 'www-data'
   group 'www-data'
