@@ -19,7 +19,7 @@ end
 
 bash "remove_default_apache_conf" do
   code "rm -f #{apache2['default_conf']}" 
-  only_if { ::File.exist?(default_conf) }
+  only_if { ::File.exist?(apache2['default_conf']) }
 end
 
 log '**** Setting up apache2 config for CachetHQ ****'
