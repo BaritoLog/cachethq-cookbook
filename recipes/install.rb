@@ -13,6 +13,10 @@ npm = cachethq['npm']
 
 apt_update
 log '**** Installing required packages ****'
+apt_repository 'php' do
+  uri 'ppa:ondrej/php'
+end
+
 cachethq['packages'].each do |pkg|
   log "*** Installing #{pkg} ***"
   apt_package pkg

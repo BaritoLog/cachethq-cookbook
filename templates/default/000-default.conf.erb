@@ -25,7 +25,7 @@
         require valid-user
         <% end %>
         # 2.4.10+ can proxy to unix socket
-        SetHandler "proxy:unix:/run/php/php7.2-fpm.sock|fcgi://localhost"
+        SetHandler "proxy:unix:/run/php/php7.3-fpm.sock|fcgi://localhost"
     </FilesMatch>
     ErrorLog <%= @error_log %>
     CustomLog <%= @access_log %> combined

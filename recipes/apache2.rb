@@ -5,24 +5,28 @@
 # All rights reserved - Do Not Redistribute
 #
 
-cachethq = node.default['cachethq']
+cachethq = node['cachethq']
 apache2 = cachethq['apache2']
 
 log '**** Installing apache2 and auth cas mod ****'
-package %w(libapache2-mod-auth-cas apache2)  do
+package %w(libapache2-mod-auth-cas libapache2-mod-fcgid apache2 software-properties-common)  do
   action :install
 end
 
-bash "a2enmod auth_cas" do
+bash "a2enmod auth_cas rewrite" do
   code "a2enmod auth_cas"
 end
 
+bash "a2enmod actions fcgid alias proxy_fcgi" do
+  code "a2enmod actions fcgid alias proxy_fcgi"
+end
+
+log '**** Setting up apache2 config for CachetHQ ****'
 bash "remove_default_apache_conf" do
   code "rm -f #{apache2['default_conf']}" 
   only_if { ::File.exist?(apache2['default_conf']) }
 end
 
-log '**** Setting up apache2 config for CachetHQ ****'
 template apache2['default_conf'] do
   source '000-default.conf.erb'
   owner 'www-data'
