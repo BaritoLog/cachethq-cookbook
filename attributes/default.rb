@@ -13,7 +13,6 @@ cachethq['packages'] = [
   'php7.3-sqlite3',
   'git',
   'openssl',
-  'nginx',
   'npm',
   'unzip'
 ]
