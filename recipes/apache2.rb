@@ -37,7 +37,7 @@ template apache2['default_conf'] do
   group 'www-data'
   mode 0644
   variables(
-    server_name: apache2['server_name'],
+    server_name: node['cachethq']['server_name'],
     install_dir: cachethq['install_dir'],
     access_log: apache2['logs']['access'],
     error_log: apache2['logs']['error'],

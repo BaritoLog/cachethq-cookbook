@@ -20,11 +20,11 @@ cachethq['repo'] = 'https://github.com/cachethq/Cachet.git'
 cachethq['db']['driver'] = 'sqlite'
 cachethq['db']['name'] = 'cachethq'
 cachethq['app_key'] = ''
+cachethq['server_name'] = ''
 
 nginx = cachethq['nginx']
 nginx['confdir'] = '/etc/nginx/sites-enabled/'
 nginx['docroot'] = '/usr/share/nginx/html/'
-nginx['server_name'] = ''
 nginx['logs_dir'] = '/var/log/nginx/'
 nginx['admin_whitelisted_ip'] = []
 nginx['fastcgi_params'] = []
@@ -36,7 +36,6 @@ cachethq['db']['file'] = "#{cachethq['install_dir']}/database/#{cachethq['db']['
 
 apache2 = cachethq['apache2']
 apache2['confdir'] = '/etc/apache2/sites-available/'
-apache2['server_name'] = 'localhost'
 apache2['logs_dir'] = '/var/log/apache2/'
 apache2['admin_whitelisted_ip'] = []
 apache2['fastcgi_params'] = []
