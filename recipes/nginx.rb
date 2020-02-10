@@ -15,6 +15,8 @@ package %w(apache2)  do
   action :remove
 end
 
+apt_package 'nginx'
+
 bash "remove_default_nginx_nginx" do
   code "rm -f /etc/nginx/sites-enabled/default" 
 end

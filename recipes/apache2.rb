@@ -8,6 +8,10 @@
 cachethq = node['cachethq']
 apache2 = cachethq['apache2']
 
+package %w(nginx)  do
+  action :remove
+end
+
 log '**** Installing apache2 and auth cas mod ****'
 package %w(libapache2-mod-auth-cas libapache2-mod-fcgid apache2 software-properties-common)  do
   action :install
