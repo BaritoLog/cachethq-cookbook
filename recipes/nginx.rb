@@ -28,7 +28,7 @@ template nginx['confdir'] + 'CachetHQ.conf' do
   group 'www-data'
   mode 0644
   variables(
-    server_name: node['cachethq']['nginx']['server_name'],
+    server_name: node['cachethq']['server_name'],
     install_dir: cachethq['install_dir'],
     access_log: cachethq['logs']['access'],
     error_log: cachethq['logs']['error'],

@@ -38,7 +38,7 @@ template fpm['confdir'] + 'php-fpm-cachethq.conf' do
     socket: fpm['socket'],
     logdir: fpm['logdir']
   )
-  notifies :reload, 'service[php7.2-fpm]'
+  notifies :reload, 'service[php7.3-fpm]'
 end
 
 log '**** Installing required nodejs modules ****'
@@ -147,7 +147,7 @@ log '**** Correcting permissions on log and install directories ****'
   end
 end
 
-service 'php7.2-fpm' do
+service 'php7.3-fpm' do
   supports status: true, restart: true, reload: true
   action :start
 end
