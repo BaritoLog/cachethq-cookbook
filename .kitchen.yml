@@ -10,9 +10,26 @@ provisioner:
 
 platforms:
   - name: ubuntu-18.04
+    driver:
+        box: bento/ubuntu-18.04
+    provisioner:
+      product_name: chef
+      product_version: latest
 
 suites:
-  - name: default
+  - name: apache2
     run_list:
-      - recipe[cachethq::default]
+      - recipe[cachethq::install]
+      - recipe[cachethq::apache2]
+    driver_config:
+      customize:
+        memory: 2048
+      network:
+        - ["private_network", { ip: "192.168.33.50" }]
+    attributes:
+
+  - name: nginx
+    run_list:
+      - recipe[cachethq::install]
+      - recipe[cachethq::nginx]
     attributes:
