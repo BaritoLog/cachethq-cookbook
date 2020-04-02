@@ -4,7 +4,6 @@ server {
   server_name localhost <%= @server_name %>;
  
   root <%= @install_dir %>public;
-  index index.html index.htm index.php;
   
   if ($request_uri ~* "^(.*/)index\.php(/?)(.*)") {
     return 301 $1$3;
