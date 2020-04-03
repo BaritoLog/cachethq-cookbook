@@ -20,13 +20,15 @@
         Require all granted
     </Directory>
     <FilesMatch \.php$>
-    	<% if @auth_type == 'CAS' %>
-        AuthType CAS
-        require valid-user
-        <% end %>
         # 2.4.10+ can proxy to unix socket
         SetHandler "proxy:unix:/run/php/php7.3-fpm.sock|fcgi://localhost"
     </FilesMatch>
+    <Location />
+        <% if @auth_type == 'CAS' %>
+        AuthType CAS
+        require valid-user
+        <% end %>
+    </Location>
     ErrorLog <%= @error_log %>
     CustomLog <%= @access_log %> combined
 </VirtualHost>
