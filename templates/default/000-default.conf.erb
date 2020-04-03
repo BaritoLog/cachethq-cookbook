@@ -10,7 +10,7 @@
     CASValidateURL <%= @cas_validate_url %>
     CASRootProxiedAs <%= @cas_root_url %>
     <% end %>
-    <Directory /opt/cachethq/public>
+    <Directory "/opt/cachethq/public">
     	<% if @auth_type == 'CAS' %>
         AuthType CAS
         require valid-user
@@ -23,7 +23,7 @@
         # 2.4.10+ can proxy to unix socket
         SetHandler "proxy:unix:/run/php/php7.3-fpm.sock|fcgi://localhost"
     </FilesMatch>
-    <Location />
+    <Location "/">
         <% if @auth_type == 'CAS' %>
         AuthType CAS
         require valid-user
